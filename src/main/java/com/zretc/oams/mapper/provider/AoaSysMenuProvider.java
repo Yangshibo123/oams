@@ -12,7 +12,7 @@ public class AoaSysMenuProvider {
                 "\tJOIN aoa_role r ON u.role_id = r.role_id\n" +
                 "\tJOIN aoa_role_power_list p ON r.role_id = p.role_id\n" +
                 "\tJOIN aoa_sys_menu m ON p.menu_id = m.menu_id \n" +
-                "where u.user_id = #{userId} and m.parent_id =0 \n" +
+                "where u.user_id = #{userId} and m.parent_id = 0 and p.is_show = 1\n" +
                 "ORDER BY m.menu_id ";
         return sql;
     }
