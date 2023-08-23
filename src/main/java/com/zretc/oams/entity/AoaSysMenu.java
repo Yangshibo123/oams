@@ -3,10 +3,14 @@ package com.zretc.oams.entity;
 
 import java.io.Serializable;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 public class AoaSysMenu implements Serializable {
     private static final long serialVersionUID = 974037727143952278L;
@@ -43,4 +47,7 @@ public class AoaSysMenu implements Serializable {
     * 菜单排序id
     */
     private Integer sortId;
+
+    @TableField(exist = false)
+    private List<AoaSysMenu> grade2Menus = new ArrayList<>();
 }
