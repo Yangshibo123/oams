@@ -71,8 +71,8 @@ public class AoaUserService {
                     AoaUser user = aoaUsers.get(0);
                     if (user.getPassword().equals(password)) {
                         HashMap map = new HashMap();
-                        map.put("user",user);
-                        map.put("menus",this.queryMenusById(user.getUserId()));
+                        map.put("user", user);
+                        map.put("menus", this.queryMenusById(user.getUserId()));
                         return R.ok(map);
                     } else {
                         return R.failed("密码不正确");
@@ -88,16 +88,16 @@ public class AoaUserService {
         }
     }
 
-    public List<AoaSysMenu> queryMenusById(Long userId){
+    public List<AoaSysMenu> queryMenusById(Long userId) {
         List<AoaSysMenu> grade1Menus = menuMapper.queryGrade1MenuByUserId(userId);
         List<AoaSysMenu> grade2Menus = menuMapper.queryGrade2MenuByUserId(userId);
-        for(AoaSysMenu grade1Menu:grade1Menus){
-            for(int i=grade2Menus.size()-1;i>=0;i--) {
+        for (AoaSysMenu grade1Menu : grade1Menus) {
+            for (int i = grade2Menus.size() - 1; i >= 0; i--) {
                 AoaSysMenu grade2Menu = grade2Menus.get(i);
-                if(grade1Menu.getMenuId()==grade2Menu.getParentId()){
+                if (grade1Menu.getMenuId() == grade2Menu.getParentId()) {
                     grade1Menu.getGrade2Menus().add(grade2Menu);
                     grade2Menus.remove(i);
-                }else{
+                } else {
                     break;
                 }
             }
