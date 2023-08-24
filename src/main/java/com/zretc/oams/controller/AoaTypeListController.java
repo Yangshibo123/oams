@@ -22,6 +22,18 @@ public class AoaTypeListController {
     @Resource
     private AoaTypeListService aoaTypeListService;
 
+    @GetMapping ("queryDeeplyList")
+    public Object queryDeeplyList(){
+        return R.ok(aoaTypeListService.queryTypeByModel("aoa_process_list"));
+    }
+    @GetMapping("queryIncomeTypeList")
+    public Object queryIncomeTypeList(){
+        return R.ok(aoaTypeListService.queryTypeByModel("aoa_bursement"));
+    }
+
+
+
+
     @PostMapping("add")
     public Object add(AoaTypeList aoaTypeList){
         return R.ok(aoaTypeListService.insert(aoaTypeList));

@@ -49,5 +49,10 @@ public class AoaTypeListService {
     public boolean deleteByIds(List<Long> ids) {
         return this.aoaTypeListMapper.deleteBatchIds(ids) > 0;
     }
-    
+
+    public Object queryTypeByModel(String typeModel) {
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.eq("type_model",typeModel);
+        return aoaTypeListMapper.selectList(wrapper);
+    }
 }
