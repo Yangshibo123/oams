@@ -36,6 +36,7 @@ public class AoaDirectorUsersController {
     }
     @GetMapping("queryAll")
     public Object queryAll() {
+
         return R.ok(aoaDirectorUsersService.queryAll());
     }
     @GetMapping("queryList")
