@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import java.sql.Date;
 @Data
-public class AoaProcessList implements Serializable {
+public class  AoaProcessList implements Serializable {
     private static final long serialVersionUID = 735735466904093033L;
     @TableId(type = IdType.AUTO)
     private Long processId;

@@ -6,8 +6,10 @@ import com.zretc.oams.entity.AoaProcessList;
 import com.zretc.oams.service.AoaProcessListService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
+
 import javax.annotation.Resource;
 import java.util.List;
+
 /**
  * (AoaProcessList)接口
  *
@@ -23,31 +25,38 @@ public class AoaProcessListController {
     private AoaProcessListService aoaProcessListService;
 
     @PostMapping("add")
-    public Object add(AoaProcessList aoaProcessList){
+    public Object add(AoaProcessList aoaProcessList) {
         return R.ok(aoaProcessListService.insert(aoaProcessList));
     }
+
     @PostMapping("edit")
-    public Object edit(AoaProcessList aoaProcessList){
+    public Object edit(AoaProcessList aoaProcessList) {
         return R.ok(aoaProcessListService.update(aoaProcessList));
     }
+
     @GetMapping("queryById")
     public Object queryById(@RequestParam(value = "id") Long id) {
         return R.ok(aoaProcessListService.queryById(id));
     }
+
     @GetMapping("queryAll")
     public Object queryAll() {
         return R.ok(aoaProcessListService.queryAll());
     }
+
     @GetMapping("queryList")
     public Object queryList(
-        @RequestParam(value = "pageNo", defaultValue = "1", required = false) Integer pageNo,
-        @RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize) {
+            @RequestParam(value = "pageNo", defaultValue = "1", required = false) Integer pageNo,
+            @RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize
+            ) {
         return R.ok(this.aoaProcessListService.queryList(pageNo, pageSize));
     }
+
     @PostMapping("deleteById")
     public Object deleteById(@RequestParam(value = "id") Long id) {
         return R.ok(this.aoaProcessListService.deleteById(id));
     }
+
     @PostMapping("deleteByIds")
     public Object deleteByIds(@RequestParam List<Long> ids) {
         return R.ok(this.aoaProcessListService.deleteByIds(ids));

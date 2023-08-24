@@ -1,5 +1,6 @@
 package com.zretc.oams.service;
 
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.zretc.oams.entity.AoaDirectorUsers;
 import com.zretc.oams.mapper.AoaDirectorUsersMapper;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,7 @@ public class AoaDirectorUsersService {
         return this.aoaDirectorUsersMapper.selectPage(page,wrapper);
     }
     public List<AoaDirectorUsers> queryAll() {
-        return this.aoaDirectorUsersMapper.selectList(null);
+        return this.aoaDirectorUsersMapper.queryAll();
     }
     public AoaDirectorUsers insert(AoaDirectorUsers aoaDirectorUsers) {
         this.aoaDirectorUsersMapper.insert(aoaDirectorUsers);

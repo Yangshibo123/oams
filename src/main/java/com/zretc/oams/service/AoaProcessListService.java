@@ -1,5 +1,6 @@
 package com.zretc.oams.service;
 
+import com.baomidou.mybatisplus.extension.api.R;
 import com.zretc.oams.entity.AoaProcessList;
 import com.zretc.oams.mapper.AoaProcessListMapper;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -49,5 +51,5 @@ public class AoaProcessListService {
     public boolean deleteByIds(List<Long> ids) {
         return this.aoaProcessListMapper.deleteBatchIds(ids) > 0;
     }
-    
+
 }

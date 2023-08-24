@@ -18,9 +18,30 @@ import java.util.List;
  */
 @Service("aoaSubjectService")
 public class AoaSubjectService {
+
     @Resource
     private AoaSubjectMapper aoaSubjectMapper;
 
+
+    public Object queryTreeList(){
+        //查出一级菜单
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.eq("parent_id",1);
+        List<AoaSubject> grade1List =  aoaSubjectMapper.selectList(wrapper);
+        List<AoaSubject> grade2List =  aoaSubjectMapper.queryGrade2();
+        for (AoaSubject subject1: grade1List){
+            for (int i = grade2List.size()-1;i>=0;i--){
+                AoaSubject subject2 = grade2List.get(i);
+                if (subject1.getSubjectId()==subject2.getParentId()){
+                        subject1.getChildren().add(subject2);
+                        grade2List.remove(i);
+                }else {
+                    break;
+                }
+            }
+        }
+        return grade1List;
+    }
     public AoaSubject queryById(Long subjectId) {
         return this.aoaSubjectMapper.selectById(subjectId);
     }

@@ -33,10 +33,11 @@ public class AoaUserService {
         return this.aoaUserMapper.selectById(userId);
     }
 
-    public IPage<AoaUser> queryList(Integer pageNo, Integer pageSize) {
+
+    public IPage<HashMap> queryList(Integer pageNo, Integer pageSize) {
         QueryWrapper wrapper = new QueryWrapper();
         Page page = new Page(pageNo, pageSize);
-        return this.aoaUserMapper.selectPage(page, wrapper);
+        return this.aoaUserMapper.querytxlNb(page);
     }
 
     public List<AoaUser> queryAll() {

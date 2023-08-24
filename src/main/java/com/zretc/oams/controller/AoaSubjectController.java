@@ -22,6 +22,13 @@ public class AoaSubjectController {
     @Resource
     private AoaSubjectService aoaSubjectService;
 
+    @GetMapping("queryTreeList")
+    public Object queryTreeList(){
+        return R.ok(aoaSubjectService.queryTreeList());
+    }
+
+
+
     @PostMapping("add")
     public Object add(AoaSubject aoaSubject){
         return R.ok(aoaSubjectService.insert(aoaSubject));
