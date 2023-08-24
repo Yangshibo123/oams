@@ -41,8 +41,10 @@ public class AoaAttendsListController {
     @GetMapping("queryList")
     public Object queryList(
         @RequestParam(value = "pageNo", defaultValue = "1", required = false) Integer pageNo,
-        @RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize) {
-        return R.ok(this.aoaAttendsListService.queryList(pageNo, pageSize));
+        @RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize,
+        String sel
+        ) {
+        return R.ok(this.aoaAttendsListService.queryList(pageNo, pageSize,sel));
     }
     @PostMapping("deleteById")
     public Object deleteById(@RequestParam(value = "id") Long id) {

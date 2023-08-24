@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -25,10 +26,10 @@ public class AoaAttendsListService {
         return this.aoaAttendsListMapper.selectById(attendsId);
     }
 
-    public IPage<AoaAttendsList> queryList(Integer pageNo, Integer pageSize) {
-        QueryWrapper wrapper = new QueryWrapper();
+    public IPage<HashMap> queryList(Integer pageNo, Integer pageSize, String sel) {
+
         Page page = new Page(pageNo,pageSize);
-        return this.aoaAttendsListMapper.selectPage(page,wrapper);
+        return this.aoaAttendsListMapper.queryMUFy(page,sel);
     }
     public List<AoaAttendsList> queryAll() {
         return this.aoaAttendsListMapper.selectList(null);
