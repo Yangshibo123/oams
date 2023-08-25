@@ -22,6 +22,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     @ResponseBody
     public Object handlerException(Exception e){
+        e.printStackTrace();
         return R.failed("系统错误!");
     }
 }

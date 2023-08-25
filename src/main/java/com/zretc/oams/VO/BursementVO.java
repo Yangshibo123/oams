@@ -3,6 +3,7 @@ package com.zretc.oams.VO;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -15,5 +16,5 @@ public class BursementVO {
     private Long typeId;//报销方式;//
     private Long shneheren;//审核人ID
     private String processDes;//报销的内容
-    private List<DetailBurseVO> reData;
+      private List<DetailBurseVO> reData = new ArrayList<>();//明细
 }
