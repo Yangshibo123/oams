@@ -68,10 +68,6 @@ public class AoaBursementService {
         bursement.setTypeId(bursementVo.getTypeId());
         bursement.setUserName(bursementVo.getUserName());//证明人
         bursement.setBurseTime(new Date(System.currentTimeMillis()));
-        bursement.setName(bursementVo.getName());
-        bursement.setTypeId(bursementVo.getTypeId());
-        bursement.setUserName(bursementVo.getUserName());//证明人
-        totalUpdate += bursementMapper.insert(bursement);
         double allMoney = 0;
         int invoiceNum = 0;
         //报销明细表
@@ -84,6 +80,7 @@ public class AoaBursementService {
             detailsburse.setSubject(detailV0.getSubjectId());
             detailsburse.setDetailmoney(detailV0.getDetailmoney());
             totalUpdate += detailsburseMapper.insert(detailsburse);
+            System.out.println("明细为"+detailsburse);
             invoiceNum += detailV0.getInvoices();
             allMoney += detailV0.getDetailmoney();
         }

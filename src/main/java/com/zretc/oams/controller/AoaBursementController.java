@@ -24,7 +24,7 @@ public class AoaBursementController {
     private AoaBursementService aoaBursementService;
 
     @PostMapping("add")
-    public Object add(BursementVO bursementVO){
+    public Object add(@RequestBody   BursementVO bursementVO){
         return R.ok(aoaBursementService.add(bursementVO));
     }
 
