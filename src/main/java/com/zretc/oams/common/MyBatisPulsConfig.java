@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MyBatisPulsConfig {
-
+//自动把实体类的下划线转换成小驼峰，前端可以用小驼峰获取了
     @Bean
     public ConfigurationCustomizer mybatisConfigurationCustomizer(){
         return new ConfigurationCustomizer() {
