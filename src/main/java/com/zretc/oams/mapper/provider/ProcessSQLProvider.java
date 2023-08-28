@@ -35,18 +35,19 @@ public class ProcessSQLProvider {
     }
 
     public String queryMyBursementDetailSql(Long processId){
-        String sql = "select p.process_id,p.type_name,process_name,apply_time,sh.user_name shr,\n" +
-                "type.type_name deeply_name,status_name,s.status_id,fqr.user_name tbr,d.dept_name,\n" +
-                "zmr.user_name zmr,b.name,bxfs.type_name bxfs,b.burse_time,b.allinvoices,b.all_money,\n" +
-                "b.manager_advice,b.financial_advice,p.process_des,b.bursement_id\n" +
-                "from aoa_process_list p,aoa_bursement b,aoa_reviewed r,aoa_user sh,aoa_type_list type,\n" +
-                "aoa_status_list s,aoa_dept d,aoa_user fqr,aoa_user zmr,aoa_type_list bxfs\n" +
-                "where p.process_id = r.pro_id and r.user_id = sh.user_id and p.process_id = b.pro_id\n" +
-                "and p.deeply_id = type.type_id and s.status_id = p.status_id \n" +
-                "and p.process_user_id = fqr.user_id and fqr.dept_id = d.dept_id\n" +
-                "and b.user_name = zmr.user_id and bxfs.type_id = b.type_id\n" +
-                "\t\t\t" +
-                "and p.process_id = #{processId}";
+        String sql = "SELECT p.process_name,s.status_name,tdr.user_name,d.dept_name,\n" +
+                "r.reviewed_time,zmr.user_name zmr,b.name,t.type_name,p.shenuser shr,\n" +
+                "b.allinvoices,b.burse_time,b.bursement_id,type.type_name deeply_name\n" +
+                "from aoa_process_list p\n" +
+                "JOIN aoa_reviewed r on p.process_id = r.pro_id\n" +
+                "join aoa_status_list s  ON r.status_id  = s.status_id \n" +
+                "join aoa_user tdr on tdr.user_id = r.user_id\n" +
+                "join aoa_dept d on d.dept_id = tdr.dept_id\n" +
+                "join aoa_bursement b on b.pro_id = p.process_id\n" +
+                "join aoa_user zmr on b.user_name =  zmr.user_id\n" +
+                "join aoa_type_list t on t.type_id = b.type_id\n" +
+                "join aoa_type_list type on type.type_id = p.deeply_id\n" +
+                "where p.process_id = #{processId}";
         return sql;
     }
 

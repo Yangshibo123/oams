@@ -53,6 +53,7 @@ public class AoaTypeListService {
     public Object queryTypeByModel(String typeModel) {
         QueryWrapper wrapper = new QueryWrapper();
         wrapper.eq("type_model",typeModel);
+
         return aoaTypeListMapper.selectList(wrapper);
     }
 }

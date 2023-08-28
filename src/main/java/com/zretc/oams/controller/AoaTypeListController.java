@@ -21,7 +21,7 @@ public class AoaTypeListController {
 
     @Resource
     private AoaTypeListService aoaTypeListService;
-
+//查询紧急程度
     @GetMapping ("queryDeeplyList")
     public Object queryDeeplyList(){
         return R.ok(aoaTypeListService.queryTypeByModel("aoa_process_list"));
@@ -30,8 +30,11 @@ public class AoaTypeListController {
     public Object queryIncomeTypeList(){
         return R.ok(aoaTypeListService.queryTypeByModel("aoa_bursement"));
     }
-
-
+    //查询加班类型
+    @GetMapping("queryJblx")
+    public Object queryJblx(){
+        return R.ok(aoaTypeListService.queryTypeByModel("aoa_overtime"));
+    }
 
 
     @PostMapping("add")
