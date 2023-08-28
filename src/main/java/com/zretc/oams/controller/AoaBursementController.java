@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.api.R;
 import com.zretc.oams.VO.BursementVO;
 import com.zretc.oams.entity.AoaBursement;
 import com.zretc.oams.service.AoaBursementService;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 import javax.annotation.Resource;
@@ -24,7 +25,7 @@ public class AoaBursementController {
     private AoaBursementService aoaBursementService;
 
     @PostMapping("add")
-    public Object add(@RequestBody   BursementVO bursementVO){
+    public Object add(@RequestBody BursementVO bursementVO){
         return R.ok(aoaBursementService.add(bursementVO));
     }
 
