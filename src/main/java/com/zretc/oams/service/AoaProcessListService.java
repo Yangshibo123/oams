@@ -2,6 +2,7 @@ package com.zretc.oams.service;
 
 import com.baomidou.mybatisplus.extension.api.R;
 import com.zretc.oams.entity.AoaProcessList;
+import com.zretc.oams.mapper.AoaDetailsburseMapper;
 import com.zretc.oams.mapper.AoaProcessListMapper;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -22,7 +23,20 @@ import java.util.List;
 public class AoaProcessListService {
     @Resource
     private AoaProcessListMapper aoaProcessListMapper;
+    @Resource
+    private AoaDetailsburseMapper aoaDetailsburseMapper;
+    public Object queryMyList(Long userId,String content,Integer pageNo,Integer pageSize){
+        Page page = new Page(pageNo,pageSize);
+        return R.ok(aoaProcessListMapper.queryMyList(page,userId,content));
+    }
 
+    public Object queryMyBursementDetail(Long processId){
+        HashMap result = aoaProcessListMapper.queryMyBursementDetail(processId);
+        Long bursementId = Long.parseLong(result.get("bursementId").toString());
+        List<HashMap> details = aoaDetailsburseMapper.querDetailBurse(bursementId);
+        result.put("details",details);
+        return R.ok(result);
+    }
     public AoaProcessList queryById(Long processId) {
         return this.aoaProcessListMapper.selectById(processId);
     }

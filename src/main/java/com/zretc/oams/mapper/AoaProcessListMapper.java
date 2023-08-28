@@ -7,7 +7,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.HashMap;
 
+import com.zretc.oams.mapper.provider.ProcessSQLProvider;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.springframework.stereotype.Repository;
 
@@ -21,4 +23,9 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface AoaProcessListMapper extends BaseMapper<AoaProcessList>{
+    @SelectProvider(type = ProcessSQLProvider.class,method = "queryMyList")
+    IPage<HashMap> queryMyList(Page page,Long userId,String content);
+
+    @SelectProvider(type = ProcessSQLProvider.class,method = "queryMyBursementDetailSql")
+    HashMap queryMyBursementDetail(Long processId);
 }

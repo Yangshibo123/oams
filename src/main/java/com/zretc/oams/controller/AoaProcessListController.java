@@ -1,6 +1,7 @@
 package com.zretc.oams.controller;
 
 import cn.dev33.satoken.annotation.SaCheckLogin;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.zretc.oams.entity.AoaProcessList;
 import com.zretc.oams.service.AoaProcessListService;
@@ -24,6 +25,19 @@ public class AoaProcessListController {
     @Resource
     private AoaProcessListService aoaProcessListService;
 
+    @GetMapping("queryMyBursementDetail")
+    public Object queryMyBursementDetail(
+            @RequestParam(value = "processId")Long processId){
+        return aoaProcessListService.queryMyBursementDetail(processId);
+    }
+    @GetMapping("queryMyList")
+    public Object queryMyList(
+            @RequestParam(value = "userId") Long userId,
+            @RequestParam(value = "content",required = false) String content,
+            @RequestParam(value = "pageNo",defaultValue = "1",required = false) Integer pageNo,
+            @RequestParam(value = "pageSize",defaultValue = "10",required = false) Integer pageSize){
+        return aoaProcessListService.queryMyList(userId,content,pageNo,pageSize);
+    }
     @PostMapping("add")
     public Object add(AoaProcessList aoaProcessList) {
         return R.ok(aoaProcessListService.insert(aoaProcessList));
